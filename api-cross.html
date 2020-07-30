@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<h1></h1>
+		<p></p>
+		<script>
+			let request= new XMLHttpRequest()
+			if(request!=null){
+				request.onload=function(){
+					if(request.status=='200' && request.readyState==4){
+						document.getElementsByTagName('p')[0].innerHTML=request.responseText
+					}
+				}
+	
+				document.getElementsByTagName('h1')[0].innerHTML='https://api.domainsdb.info/v1/domains/search?domain=facebook&zone=com'
+				request.open("GET","https://api.domainsdb.info/v1/domains/search?domain=facebook&zone=com", true)
+				//request.withCredentials = true;
+				//request.setRequestHeader("Content-Type", "application/json");
+				//request.setRequestHeader('Access-Control-Allow-Origin','*');
+				request.send()
+			}else{
+				console.log('request is null')
+			}
+			
+			
+			function myCallbackFunction(data){
+				document.getElementsByTagName('p')[0].innerHTML=data.response
+			}
+	
+		</script>
+	</body>
+</html>
